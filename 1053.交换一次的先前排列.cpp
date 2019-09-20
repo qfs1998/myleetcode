@@ -9,7 +9,7 @@ public:
         vector<int>v(A);
         if(!prev_permutation(A.begin(),A.end()))
             return v;
-        return A;
+        return A;   
     }
 };
 
