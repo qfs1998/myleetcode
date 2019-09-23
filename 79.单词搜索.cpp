@@ -18,7 +18,9 @@ public:
         for (int i = 0; i < m; ++i)
             for (int j = 0; j < n; ++j)
             {
-
+                //放在循环内构造太蠢了，耗时太大了。
+                //如果一次循环没找到，visited都已经被重置了，应该放在外面定义。
+                //vector<vector<bool>> visited(m, vector<bool>(n, false));                
                 if (dfs(
                         board,
                         i,
