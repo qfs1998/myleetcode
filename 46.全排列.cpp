@@ -21,43 +21,86 @@
 //         return V;
 //     }
 // };
+// class Solution {
+// public:
+//         vector<vector<int>> permute(vector<int> &num) {
+//         vector<vector<int>> res;
+//         vector<bool>used(num.size(),false);
+//         vector<int>pre;
+//         dfs(num,res,pre,used,0);
+//         return res;
+//     }
+
+// private:
+//     void dfs(
+//     vector<int>&num,
+//     vector<vector<int>>&res,
+//     vector<int>&pre,
+//     vector<bool>used,
+//     int first)
+//     {
+//         if(first==num.size())
+//         {
+//             res.push_back(pre);
+//             return;
+//         }
+        
+//         for(int i=0;i<num.size();++i)
+//         {
+//             if(used[i]==false)
+//             {
+//                 pre.push_back(num[i]);
+//                 used[i]=true;
+//                 dfs(num,res,pre,used,first+1);
+//                 used[i]=false;
+//                 pre.pop_back();
+//             }
+//         }
+//         return ;
+//     }
+
+// };
 class Solution {
 public:
-        vector<vector<int>> permute(vector<int> &num) {
-        vector<vector<int>> res;
-        vector<bool>used(num.size(),false);
-        vector<int>pre;
-        dfs(num,res,pre,used,0);
+    vector<vector<int>> permute(vector<int>& nums) {
+        dfs(nums,0);
         return res;
     }
-
 private:
-    void dfs(
-    vector<int>&num,
-    vector<vector<int>>&res,
-    vector<int>&pre,
-    vector<bool>used,
-    int deep)
+    vector<vector<int>>res;
+    void swap(int &a,int &b)
     {
-        if(deep==num.size())
+        int temp=a;
+        a=b;
+        b=temp;
+        return;
+    }
+    bool isRepeat(vector<int>&nums,int first,int i)
+    {
+        int temp=nums[i];
+        for(int j=first;j<i;++j)
+            if(nums[j]==temp)
+                return true;
+        return false;
+    }
+    void dfs(vector<int>&nums,int first)
+    {
+        if(first==nums.size())
         {
-            res.push_back(pre);
+            res.push_back(nums);
             return;
         }
-        
-        for(int i=0;i<num.size();++i)
+
+        for (int i = first; i < nums.size(); ++i)
         {
-            if(used[i]==false)
-            {
-                pre.push_back(num[i]);
-                used[i]=true;
-                dfs(num,res,pre,used,deep+1);
-                used[i]=false;
-                pre.pop_back();
-            }
+            //同一层重复了
+            if(isRepeat(nums,first,i))
+                continue;
+            swap(nums[first],nums[i]);
+            dfs(nums,first+1);
+            //reset
+            swap(nums[first],nums[i]);
         }
-        return ;
+        return;
     }
-
 };
-
