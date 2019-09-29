@@ -75,14 +75,7 @@ private:
         b=temp;
         return;
     }
-    bool isRepeat(vector<int>&nums,int first,int i)
-    {
-        int temp=nums[i];
-        for(int j=first;j<i;++j)
-            if(nums[j]==temp)
-                return true;
-        return false;
-    }
+
     void dfs(vector<int>&nums,int first)
     {
         if(first==nums.size())
@@ -93,9 +86,7 @@ private:
 
         for (int i = first; i < nums.size(); ++i)
         {
-            //同一层重复了
-            if(isRepeat(nums,first,i))
-                continue;
+
             swap(nums[first],nums[i]);
             dfs(nums,first+1);
             //reset
