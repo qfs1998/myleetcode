@@ -16,7 +16,9 @@ public:
     //     }
     //     return sum==1;
     // }
+    
         bool isPowerOfTwo(int n) {
+            //eg: 1000  0111
             return (n>0) && (n&(n-1))==0;
     }
 };

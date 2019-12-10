@@ -7,7 +7,7 @@
 class Solution
 {
 public:
-	void DpValueUpdate(const vector<vector<int>> &grip, vector<vector<int>>&dp)
+	void DpValueUpdate(const vector<vector<int>> &grip, vector<vector<int>> &dp)
 	{
 		int m = grip.size();
 		int n = grip[0].size();
@@ -21,7 +21,7 @@ public:
 				//上面没有
 				if (i - 1 < 0 && j - 1 >= 0)
 				{
-					dp[i][j] = dp[i][j - 1] + grip[i][j ];
+					dp[i][j] = dp[i][j - 1] + grip[i][j];
 					continue;
 				}
 				//左边没有
@@ -35,7 +35,6 @@ public:
 				// if(n-1>=0)
 				left = dp[i][j - 1] + grip[i][j];
 				dp[i][j] = min(up, left);
-
 			}
 		}
 	}
@@ -57,4 +56,5 @@ public:
 		return dp[m - 1][n - 1];
 	}
 };
+
 
